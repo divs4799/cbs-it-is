@@ -2,8 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser= require('body-parser');
 const ejs = require("ejs");
-const mongoose = require('mongoose');
-let alert = require('alert'); 
+const mongoose = require('mongoose'); 
 const fileUpload = require('express-fileupload');
 mongoose.connect('mongodb+srv://admin-divs:Hello2310@pdf-cluster.obw3a.mongodb.net/pdfDB', {useNewUrlParser: true, useUnifiedTopology: true});
 
