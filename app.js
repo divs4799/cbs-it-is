@@ -5,7 +5,7 @@ const ejs = require("ejs");
 const mongoose = require('mongoose'); 
 const fileUpload = require('express-fileupload');
 mongoose.connect('mongodb+srv://admin-divs:Hello2310@pdf-cluster.obw3a.mongodb.net/pdfDB', {useNewUrlParser: true, useUnifiedTopology: true});
-
+// mongoose.connect('mongodb://localhost:27017/pdfDB', {useNewUrlParser: true,useUnifiedTopology: true});
 app.set('view engine', 'ejs');
 app.use(express.static("Public"));
 app.use(bodyParser.urlencoded({ extended: true })); 
@@ -60,7 +60,6 @@ app.post('/upload', function(req, res) {
 
     PDF.find({subjectCode:code,examName:req.body.examName,session:req.body.session},function(err,docs){
         console.log(docs)
-        console.log(docs.length)
         if(docs.length>=1){
             res.redirect('/upload/fail')
         }

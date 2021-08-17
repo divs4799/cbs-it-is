@@ -10,7 +10,7 @@ html{
 body{
     background-color: #E4E9FD;
     background: -webkit-linear-gradient( 34deg, #025955 58%,#00917c 58.9%);
-    min-height: 1000px;
+    min-height: 725px;
     font-family: 'helvetica neue';
     transition: all 2s;
     
@@ -225,6 +225,17 @@ color: #E4E9FD;
   
     to{background-image:linear-gradient( 50deg, #025955 58%,#00917c 58.9%);}
        
+}
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 2rem;
+    background-color: #00000029;
+    color: wheat;
 }
 /* responsive */
 @media only screen and (max-width: 1000px) {
