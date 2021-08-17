@@ -9,8 +9,6 @@ document.getElementById("btn" + i ).addEventListener("click",function(){
                 document.getElementsByClassName("stream-cont")[0].style.visibility="visible";
                 document.getElementsByClassName("stream-cont")[0].classList.add("animate");
             },1500);
-          
-            // document.body.classList.add("animate");
 
 
 

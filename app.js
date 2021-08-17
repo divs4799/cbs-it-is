@@ -76,7 +76,7 @@ app.post('/upload', function(req, res) {
             });
             pdf.save();
              let sampleFile;
-    let uploadPath;
+            let uploadPath;
   
     if (!req.files || Object.keys(req.files).length === 0) {
       return res.status(400).send('No files were uploaded.');
@@ -84,7 +84,7 @@ app.post('/upload', function(req, res) {
   
     // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
     sampleFile = req.files.sampleFile;
-    uploadPath = __dirname + '/Public/pdf/' + sampleFile.name;
+    uploadPath = __dirname + '/Public/pdf/' + name + ".pdf";
   
     // Use the mv() method to place the file somewhere on your server
     sampleFile.mv(uploadPath, function(err) {
