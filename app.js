@@ -55,16 +55,16 @@ app.post("/newPdfForm",(req,res)=>{
 });
 
 app.post('/upload', function(req, res) {
-    
-    PDF.find({subjectCode:req.body.subjectCode,examName:req.body.examName,session:req.body.session},function(err,docs){
+    code= req.body.subjectCode.toUpperCase();
+    console.log(code)
+
+    PDF.find({subjectCode:code,examName:req.body.examName,session:req.body.session},function(err,docs){
         console.log(docs)
+        console.log(docs.length)
         if(docs.length>=1){
-    
             res.redirect('/upload/fail')
         }
         else{
-            code= req.body.subjectCode.toUpperCase();
-            console.log(code)
             var name = req.body.subjectName+"("+code+")";
             const pdf = new PDF({
                 name:name,
