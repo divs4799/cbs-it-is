@@ -1,0 +1,22 @@
+{
+  "name": "cbs-utiltiy",
+  "version": "1.0.0",
+  "description": "A website useful for students where they can get semester question paper and answers.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app",
+    "dev": "nodemon app"
+  },
+  "author": "Divyansh sao",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "mongoose": "^5.12.3"
+  },"engines": {
+    "node": "14.17.3"
+  }
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBS iT iS - 404 </title>
+    <link rel="stylesheet" href="/paper.css">
+    <style>
+        body{
+            min-height:100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .container{
+        width: 80%;
+        margin: 1rem auto;
+        display: flex;
+        justify-content: center;
+        }
+        .container a img{
+            width: 40rem;
+        }
+        #text{
+            width: 80%;
+            margin: 0 auto;
+        }
+        h1{
+            color: white;
+        }
+        /* responsive */
+@media only screen and (max-width: 1000px) {
+    #header{justify-content: center;}
+    .nav-link{width: 100%;}
+    .container a img{width: 90%;}
+    #text{font-size: 1rem;}
+}
+@media only screen and (max-width: 500px){
+    .nav-link li a{font-size: 15px;}
+}
+    </style>
+</head>
+<body>
+  <nav id="header" class="fill"><ul class="nav-link fill">
+    <li>  <a href="/">HOME</a></li>
+     <li><a href="/syllabus">SYLLABUS</a></li>
+     <li><a id="third" href="/question">QUESTION PAPER</a></li>
+   </ul>
+  </nav>
+
+          <%let seme = sem %>
+         <% let j = seme.length %>
+          <% let semester = "Semester "+ seme.slice(j-1,j); %>
+          
+      <div class="head-cont"><%=semester %> , <%=stream%><br> Question Paper Download</div>
+    <div class="container">
+        <a href="/"><img src="/404.png" alt="" srcset=""></a>
+    </div>
+    <div id="text">
+    <h1>This error Was shown Because There was no data for the following Semester or Stream.</h1>
+</div>
+</div>
+</body>
+</html>

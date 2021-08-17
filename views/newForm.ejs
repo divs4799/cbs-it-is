@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBS iT iS - Upload</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@1&family=Lato&family=Libre+Baskerville&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@1&display=swap" rel="stylesheet">
+
+    <style>
+        *{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+html{
+    font-size: 18px;
+}
+body{
+    background-color: #E4E9FD;
+    background: -webkit-linear-gradient( 34deg, #025955 58%,#00917c 58.9%);
+    min-height: 100vh;
+    font-size: 18px;
+    font-family: 'helvetica neue';
+    transition: 0.5s;   
+}
+/* Header */
+#header{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 8vh;
+    background-color: #00000029;
+}
+ .nav-link{
+        display: flex;     
+        width: 38%;
+        justify-content: space-around;
+        margin: 0;
+ }
+.nav-link a{
+    color: silver;
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 1rem;
+    text-decoration: none;
+}
+.nav-link li{
+    list-style: none;
+    width:45%;
+    min-height: 8vh;
+    text-align: center;
+    overflow: hidden;
+}
+.nav-link li:hover{
+    color: #0000;
+    text-decoration: #000;
+    z-index: 1;
+    
+    animation: fill 1s forwards;
+}
+/* fill */
+nav.fill ul li a {
+    transition: all 2s;
+    position: relative;
+    top: 1rem;
+  }
+  #third{
+    top:0.5rem;
+}
+  
+  nav.fill ul li a:hover {
+    color: #000;
+    z-index: 1;
+    
+  }
+ 
+  @keyframes fill {
+    0% {
+      /* width: 40%; */
+      /* height: 1px; */
+    }
+    100% {
+      
+      background: rgb(134, 167, 146);
+    }
+  }
+  #form-container{
+  width: 75%;
+  margin: auto;
+}
+#head-cont{
+    width: 75%;
+    margin: 3rem auto;
+    text-align: center;
+    font-size: 1rem;
+    color: #edffec;
+}
+#head-cont h1{font-size: 2rem;}
+#uploadForm{
+    color: #edffec;
+}
+#yearpicker{color: #000;}
+@media only screen and (max-width: 1000px) {
+    #header{justify-content: center;}
+    .nav-link{width: 100%;}
+}
+@media only screen and (max-width: 500px){
+    .nav-link li a{font-size: 15px;}
+}
+    </style>
+
+    </head>
+    <body>
+        <nav id="header" class="fill"><ul class="nav-link">
+            <li>  <a href="/">HOME</a></li>
+             <li><a href="/syllabus">SYLLABUS</a></li>
+             <li><a id="third" href="/question">QUESTION PAPER</a></li>
+           </ul>
+        </nav>
+
+        <div id="head-cont">
+        <h1>Please Fill this form to Upload Question Paper</h1>
+    </div>
+    <div id="form-container">
+        
+        <form ref='uploadForm' 
+        id='uploadForm'  encType="multipart/form-data" class="form-horizontal" action="upload" method="post">
+            <div class="form-group">
+                <label for="name" class="control-label col-lg-2">Subject Name :</label>
+                <div class="col-lg-10">
+                    <input type="text" required autocomplete="off" class="form-control" name="subjectName" placeholder="Enter Subject Name">
+                </div>
+            </div>
+
+            <div class="form-group"><label for="subjectCode" class="control-label col-lg-2">Subject Code:</label>
+                <div class="col-lg-10">
+                    <input class="form-control" type="text" name="subjectCode" required autocomplete="off" placeholder="Subject Code" />
+                </div>
+            </div>
+
+            <div class="form-group"><label for="semester" class="control-label col-lg-2">Semester:</label>
+                <div class="col-lg-10">
+                    <input required name="semester" class="form-control" list="datalistOptions" id="exampleDataList"
+                        placeholder="Enter Semester" />
+                    <datalist id="datalistOptions">
+                        <option value="semester1"></option>
+                        <option value="semester2"></option>
+                        <option value="semester3"></option>
+                        <option value="semester4"></option>
+                        <option value="semester5"></option>
+                        <option value="semester6"></option>
+                        <option value="semester7"></option>
+                        <option value="semester8"></option>
+                        <option value="semester9"></option>
+                        <option value="semester10"></option>
+                    </datalist>
+                </div>
+            </div>
+
+            <div class="form-group"><label required for="stream" class="control-label col-lg-2">Stream</label>
+                <div class="col-lg-10">
+                    <label class="radio-inline"><input type="radio" name="stream" value="physics" id="">Physics</label>
+                    <label class="radio-inline"><input type="radio" name="stream" value="chemistry" id="">Chemistry</label>
+                    <label class="radio-inline"><input type="radio" name="stream" value="biology" id="">Biology</label>
+                    <label class="radio-inline"><input type="radio" name="stream" value="maths" id="">Mathematics</label>
+                    <label class="radio-inline"><input type="radio" name="stream" value="all" id="">All(For more than one subject)</label>
+                </div>
+            </div>
+            <div class="form-group"><label for="examName" class="control-label col-lg-2">Session :</label>
+                <div class="col-lg-10">
+                    <select name="session" id="yearpicker"></select>
+                </div>
+            </div>
+            <div class="form-group"><label for="examName" class="control-label col-lg-2">Exam Name:</label>
+                <div class="col-lg-10">
+                    <label for="" class="radio-inline"><input type="radio" name="examName" value="Mid-Semester" id="">Mid-Semester</label>
+                    <label for="" class="radio-inline"><input type="radio" name="examName" value="End-Semester" id="">End-Semester</label>
+                </div>
+            </div>
+
+            <div class="form-group"><label for="file" required class="control-label col-lg-2">File:</label>
+                <div class="col-lg-10">
+                        <input type="file" required name ="sampleFile" accept=".pdf" class="custom-file-input" id="inputGroupFile01">
+                    </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-10">
+                <input class="btn btn-success" type="submit" value="Submit">
+            </div></div>
+            
+            
+        </form>
+    </div>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        let startYear = 1800;
+        let endYear = new Date().getFullYear();
+        for (i = endYear; i > startYear; i--)
+        {
+          $('#yearpicker').append($('<option />').val(i).html(i));
+        }
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBS iT iS - Paper </title>
+    <link rel="stylesheet" href="/paper.css">
+</head>
+<body>
+  <nav id="header" class="fill"><ul class="nav-link fill">
+    <li>  <a href="/">HOME</a></li>
+     <li><a href="/syllabus">SYLLABUS</a></li>
+     <li><a id="third" href="/question">QUESTION PAPER</a></li>
+   </ul>
+  </nav>
+
+          <%let seme = sem %>
+         <% let j = seme.length %>
+          <% let semester = "Semester "+ seme.slice(j-1,j); %>
+          
+      <div class="head-cont"><%=semester %> , <%=stream%><br> Question Paper Download</div>
+    <div id="container">
+  <% for (let i=0;i< result.length;i++){  %> 
+
+    <!-- <%//let name = result[i].name.replace(/ /g, "");%> -->
+   <% let url = "/pdf/" + result[i].name+".pdf" %>
+   
+    <div class="item-cont">
+      <div id="text">      <h2><%= result[i].name%></h2> <h3>Year : <%= result[i].session%> <br> Exam Name:  <%=result[i].examName%></h3></div>
+
+      <a class = "download" href= "<%=url %>" target="_blank"><span> Download</span></a>
+         
+        </div>
+   <%}%>
+
+</div>
+</body>
+</html>
