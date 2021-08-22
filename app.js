@@ -4,12 +4,19 @@ const bodyParser= require('body-parser');
 const ejs = require("ejs");
 const mongoose = require('mongoose'); 
 const fileUpload = require('express-fileupload');
-mongoose.connect('mongodb+srv://admin-divs:Hello2310@pdf-cluster.obw3a.mongodb.net/pdfDB', {useNewUrlParser: true, useUnifiedTopology: true});
+var cloudinary = require('cloudinary').v2;
+mongoose.connect('mongodb+srv://admin-divs:Hello2310@pdf-cluster.obw3a.mongodb.net/newPdfDB', {useNewUrlParser: true, useUnifiedTopology: true});
 // mongoose.connect('mongodb://localhost:27017/pdfDB', {useNewUrlParser: true,useUnifiedTopology: true});
 app.set('view engine', 'ejs');
 app.use(express.static("Public"));
 app.use(bodyParser.urlencoded({ extended: true })); 
-app.use(fileUpload());
+app.use(fileUpload({useTempFiles:true}));
+cloudinary.config({ 
+    cloud_name: 'cbsitis', 
+    api_key: '512518989829881', 
+    api_secret: 'nsfjnRBbi_xLelYeaoRWgkE027A',
+    secure: true
+  });
 
 const pdfSchema = new mongoose.Schema({
     name: String,
@@ -18,7 +25,8 @@ const pdfSchema = new mongoose.Schema({
     stream: {type:String,required: true},
     session : Number,
     examName: String,
-    all:Boolean
+    all:Boolean,
+    url:"string"
      
 });
 const PDF = mongoose.model("PDF",pdfSchema);
@@ -56,46 +64,39 @@ app.post("/newPdfForm",(req,res)=>{
 
 app.post('/upload', function(req, res) {
     code= req.body.subjectCode.toUpperCase();
-    console.log(code)
 
     PDF.find({subjectCode:code,examName:req.body.examName,session:req.body.session},function(err,docs){
-        console.log(docs)
         if(docs.length>=1){
-            res.redirect('/upload/fail')
+            res.redirect('/upload/already')
         }
         else{
             var name = req.body.subjectName+"("+code+")";
-            const pdf = new PDF({
-                name:name,
-                subjectCode:code,
-                semester:req.body.semester,
-                stream:req.body.stream,
-                session:req.body.session,
-                examName:req.body.examName
-            });
-            pdf.save();
-             let sampleFile;
-            let uploadPath;
-  
-    if (!req.files || Object.keys(req.files).length === 0) {
-      return res.status(400).send('No files were uploaded.');
-    }
-  
-    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-    sampleFile = req.files.sampleFile;
-    uploadPath = __dirname + '/Public/pdf/' + name + ".pdf";
-  
-    // Use the mv() method to place the file somewhere on your server
-    sampleFile.mv(uploadPath, function(err) {
-      if (err)
-        return res.status(500).send(err);
+            let file = req.files.sampleFile;
+            
+            cloudinary.uploader.upload(file.tempFilePath,{public_id:name,folder:"PDF"},(err,result)=>{
+                if(err != undefined){
+                    res.redirect('/upload/fail');    
+                    console.log(err)
+                }
+                
+                const pdf = new PDF({
+                    name:name,
+                    subjectCode:code,
+                    semester:req.body.semester,
+                    stream:req.body.stream,
+                    session:req.body.session,
+                    examName:req.body.examName,
+                    url:result.url
+                });
+                pdf.save();
+                
+            })
 
       res.redirect('/upload/sucess');
-    });
+    
 
         }
     })
-    console.log(req.body);
    
   });
 
@@ -104,9 +105,13 @@ app.get("/upload/:result",function(req,res){
     if(result=="sucess"){
         var head ="Yeah !"
         var para = "Your File is Uploaded Thankyou for Uploading"
-    }else{
+    }else if(result=="already"){
+        var head= "Oops!!";
+        var para = "There is another file with same details Please Check the site and try again."
+    }
+    else{
         var head = "Oops!!"
-        var para ="There is another file with same details Please Check the site and try again."
+        var para ="There was some error while uploading please try again! or contact Support"
     }
     res.render('jumbotron',{head:head,resultString:para})
 });
