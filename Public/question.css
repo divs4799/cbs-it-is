@@ -156,11 +156,22 @@ nav.fill ul li a {
     position: relative;
     
 }
+.btn:hover{
+    transform: scale(1.1);
+}
+.btn:active{
+    transform: scale(1);
+}
+.btn:focus{
+    border:2px solid #1d1d1d;
+    background: #00917c;
+    border-radius: 12px;
+}
 .sem-btn{
 flex: 0 0 10%;
-width: 30%;
+width: 27%;
 height: 2rem;
-margin: 0.3rem;
+margin: 0.5rem;
 background: none;
 border: 2px solid #1e6f5c;
 transition-property: all;

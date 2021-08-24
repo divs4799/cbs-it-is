@@ -91,7 +91,6 @@ nav.fill ul li a {
     width: 200px;
     height:75px;
     margin: 1rem;
-    
     font-size: 24px;
     color: #000;
     display: inline-flex;
@@ -104,7 +103,11 @@ nav.fill ul li a {
 }
 .download:hover{
     color: #fff;
+    transform: scale(1.1);
 
+}
+.download:active{
+    transform: scale(0.9);
 }
 .download:before{
     content: '';
