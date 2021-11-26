@@ -70,10 +70,10 @@ app.post('/upload', function(req, res) {
             res.redirect('/upload/already')
         }
         else{
-            var name = req.body.subjectName+"("+code+")";
+            var name = req.body.subjectName+"("+code+")"+ req.body.session + req.body.examName;
             let file = req.files.sampleFile;
             
-            cloudinary.uploader.upload(file.tempFilePath,{public_id:name,folder:"PDF"},(err,result)=>{
+            cloudinary.uploader.upload(file.tempFilePath,{public_id:name,folder:"PDF/"+req.body.session+"/"+req.body.examName},(err,result)=>{
                 if(err != undefined){
                     res.redirect('/upload/fail');    
                     console.log(err)
