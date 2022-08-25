@@ -1,4 +1,4 @@
 This is a Brave Rewards publisher verification file.
 
 Domain: cbs-it-is.herokuapp.com
-Token: 98e0dc2ecec4e9d74e742f3ef327ac591fdef257579705aed8b7132b1aa27598
+Token: dde337175291247d591dac2e463d35a8e9532d52ad2f2bac2bccbd8099ef0a5b
