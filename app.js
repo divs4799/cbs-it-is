@@ -11,6 +11,7 @@ var uri = "mongodb+srv://pdfData:pdfdata12345@pdf-cluster.obw3a.mongodb.net/newP
 mongoose.connect(uri).then((result)=>{console.log("DB Connected")}).catch((error)=>{console.log("Error in connection to DB: ",error)});
 // mongoose.connect('mongodb://localhost:27017/pdfDB', {useNewUrlParser: true,useUnifiedTopology: true});
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'))
 app.use(express.static(__dirname + "/Public"));
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(fileUpload({useTempFiles:true}));
