@@ -1,11 +1,14 @@
 const express = require('express');
+// pdfdata12345
 const app = express();
 const bodyParser= require('body-parser');
 const ejs = require("ejs");
 const mongoose = require('mongoose'); 
 const fileUpload = require('express-fileupload');
 var cloudinary = require('cloudinary').v2;
-mongoose.connect('mongodb+srv://admin-divs:Hello2310@pdf-cluster.obw3a.mongodb.net/newPdfDB', {useNewUrlParser: true, useUnifiedTopology: true});
+var uri = "mongodb+srv://pdfData:pdfdata12345@pdf-cluster.obw3a.mongodb.net/newPdfDB";
+// 'mongodb+srv://admin-pdfData:pdfdata12345@pdf-cluster.obw3a.mongodb.net/newPdfDB'
+mongoose.connect(uri).then((result)=>{console.log("DB Connected")}).catch((error)=>{console.log("Error in connection to DB: ",error)});
 // mongoose.connect('mongodb://localhost:27017/pdfDB', {useNewUrlParser: true,useUnifiedTopology: true});
 app.set('view engine', 'ejs');
 app.use(express.static("Public"));
